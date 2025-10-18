@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food-Edge | Restaurant Menu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #111;
+      color: #cea7a7;
+      line-height: 1.6;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #c19723;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #0d7075;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ffcc33;
+    }
+    /* ---------- Hero Section ---------- */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: url('https://www.deputy.com/uploads/2018/10/The-Most-Popular-Menu-Items-That-You-should-Consider-Adding-to-Your-Restaurant_Content-image1-min-1024x569.png') center/cover no-repeat;
+      color: #ffffff;
+      text-shadow: 1px 1px 5px #000;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero button {
+      background: #d25d5d;
+      color: #000;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .hero button:hover {
+      background: #ffaa00;
+    }
+    .menu-section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .menu-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #ffcc33;
+    }
+    .filter-buttons {
+      margin-bottom: 2rem;
+    }
+    .filter-btn {
+      background: #333;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      margin: 0.3rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: #ffcc33;
+      color: #000;
+    }
+    .menu-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .menu-item {
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s;
+    }
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+    .menu-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .item-info {
+      padding: 1rem;
+    }
+    .item-info h3 {
+      color: #ffcc33;
+      margin-bottom: 0.5rem;
+    }
+    .item-info p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .item-info span {
+      display: block;
+      margin-top: 0.5rem;
+      color: #bbb;
+    }
+    .add-btn {
+      margin-top: 0.7rem;
+      background: #ffcc33;
+      color: #000;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+    .add-btn:hover {
+      background: #ffaa00;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: #1a1a1a;
+      color: #bbb;
+    }
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🍟 Food-Edge</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="hero">
+    <h1>Welcome to Food-Edge</h1>
+    <p>"Where every bite tells a story"!</p>
+    <button onclick="scrollToMenu()">View Menu</button>
+  </section>
+  <section id="menu" class="menu-section">
+    <h2>Our Menu</h2>
+    <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterMenu('all')">All</button>
+      <button class="filter-btn" onclick="filterMenu('starters')">Starters</button>
+      <button class="filter-btn" onclick="filterMenu('main')">Main Course</button>
+      <button class="filter-btn" onclick="filterMenu('desserts')">Desserts</button>
+      <button class="filter-btn" onclick="filterMenu('beverages')">Beverages</button>
+    </div>
+    <div class="menu-container">
+      <div class="menu-item starters">
+        <img src="https://www.cookingclassy.com/wp-content/uploads/2015/07/cheesy-garlic-bread-1.jpg" alt="Garlic Bread" />
+        <div class="item-info">
+          <h3>Garlic Bread</h3>
+          <p>Freshly baked with butter and herbs.</p>
+          <span>₹160</span>
+          <button class="add-btn" onclick="addToCart('Garlic Bread', 3.99)">Add to Cart</button>
+        </div>
+        <img src="https://cookingwithcocktailrings.com/wp-content/uploads/2021/02/Pork26ChiveCrispyDumplings-48.jpg" alt="Dumplings" />
+        <div class="item-info">
+          <h3>Dumplings</h3>
+          <p>"Taste the tradition, feel the love".</p>
+          <span>₹210</span>
+          <button class="add-btn" onclick="addToCart('Dumplings', 3.99)">Add to Cart</button>
+        </div>
+        <img src="https://damnthatlooksgood.com/wp-content/uploads/2013/01/181.jpg" alt="Fries" />
+        <div class="item-info">
+          <h3>Fries</h3>
+          <p>So good, they're fries-tastic!</p>
+          <span>₹150</span>
+          <button class="add-btn" onclick="addToCart('Fries', 3.99)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="menu-item main">
+        <img src="https://ortensiablutraveladventures.com/wp-content/uploads/2021/06/aurelien-lemasson-theobald-x00CzBt4Dfk-unsplash-1.jpg" alt="Margherita Pizza" />
+        <div class="item-info">
+          <h3>Margherita Pizza</h3>
+          <p>Slice into joy...</p>
+          <span>₹550</span>
+          <button class="add-btn" onclick="addToCart('Margherita Pizza', 9.99)">Add to Cart</button>
+        </div>
+        <img src="https://cdn.theliveinkitchen.com/wp-content/uploads/2024/05/01151542/Mushroom-Alfredo-The-Live-In-Kitchen-Featured.jpeg" alt="Mushroom Alfredo Pasta" />
+        <div class="item-info">
+          <h3>Mushroom Alfredo Pasta</h3>
+          <p>Where mushrooms meet magic.</p>
+          <span>₹270</span>
+          <button class="add-btn" onclick="addToCart('Mushroom Alfredo Pasta', 9.99)">Add to Cart</button>
+        </div>
+        <img src="https://diabetesstrong.com/wp-content/uploads/2021/10/grilled-veggie-wraps-8.jpg" alt="Veggie Wrap" />
+        <div class="item-info">
+          <h3>Veggie Wrap</h3>
+          <p>The taste of garden-fresh, wrapped up.</p>
+          <span>₹140</span>
+          <button class="add-btn" onclick="addToCart('Veggie Wrap', 9.99)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="menu-item desserts">
+        <img src="https://c.ndtvimg.com/2020-01/ko06bsh8_lava-cake_625x300_22_January_20.jpg" alt="Chocolate Lava Cake" />
+        <div class="item-info">
+          <h3>Chocolate Lava Cake</h3>
+          <p>The sweetest eruption.</p>
+          <span>₹170</span>
+          <button class="add-btn" onclick="addToCart('Chocolate Lava Cake', 4.99)">Add to Cart</button>
+        </div>
+        <img src="https://www.laurafuentes.com/wp-content/uploads/2021/05/blueberry-pancakes_RC.jpg" alt="Blueberry Pancake" />
+        <div class="item-info">
+          <h3>Blueberry Pancake</h3>
+          <p>Stack 'em up, and let the good times roll.</p>
+          <span>₹210</span>
+          <button class="add-btn" onclick="addToCart('Blueberry Pancake', 4.99)">Add to Cart</button>
+        </div>
+        <img src="https://cmsimages.timesgroup.com/image-resizer/Bombaytimes?s3_path=Bombaytimes/posts/1743568599436/assets/featureImages/1743568841388-1.png&format=webp" alt="Belgian Chocolate Ice-Cream" />
+        <div class="item-info">
+          <h3>Belgian Chocolate Ice-Cream</h3>
+          <p>Experience the richness of true cocoa luxury.</p>
+          <span>₹180</span>
+          <button class="add-btn" onclick="addToCart('Belgian Chocolate Ice-Cream', 4.99)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="menu-item beverages">
+        <img src="https://veggiedesserts.com/wp-content/uploads/2018/06/Berry-Iced-Tea-3.jpg" alt="Iced Tea" />
+        <div class="item-info">
+          <h3>Iced Tea</h3>
+          <p>"Chill out with every sip"!</p>
+          <span>₹140</span>
+          <button class="add-btn" onclick="addToCart('Iced Tea', 3.50)">Add to Cart</button>
+        </div>
+        <img src="https://www.osoaa.in/cdn/shop/articles/Untitled_design_16.png?v=1701842345" alt="Hot Chocolate" />
+        <div class="item-info">
+          <h3>Hot Chocolate</h3>
+          <p>"Cocoa Dreams".</p>
+          <span>₹170</span>
+          <button class="add-btn" onclick="addToCart('Hot Chocolate', 3.50)">Add to Cart</button>
+        </div>
+        <img src="https://assets.epicurious.com/photos/647df8cad9749492c4d5d407/1:1/w_4506,h_4506,c_limit/StrawberryMilkshake_RECIPE_053123_3599.jpg" alt="Strawberry Milkshake" />
+        <div class="item-info">
+          <h3>Strawberry Milkshake</h3>
+          <p>Sip the sweet life.</p>
+          <span>₹150</span>
+          <button class="add-btn" onclick="addToCart('Strawberry Milkshake', 3.50)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer id="contact">
+    <p>📍 1234,Sonipat,Haryana | ☎ 77900-3XXXX | ⏰ 10AM - 10PM</p>
+    <p>&copy; 2025 Food-Edge | Designed by Ashish Nashier</p>
+  </footer>
+  <script>
+    function scrollToMenu() {
+      document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+    }
+    function filterMenu(category) {
+      const items = document.querySelectorAll('.menu-item');
+      const buttons = document.querySelectorAll('.filter-btn');
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+    let cart = [];
+    function addToCart(itemName, price) {
+      cart.push({ name: itemName, price });
+      alert(`${itemName} added to cart!`);
+    }
+  </script>
+</body>
+</html>
